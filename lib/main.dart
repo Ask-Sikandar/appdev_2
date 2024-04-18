@@ -1,7 +1,17 @@
+import 'package:appdev_2/Screens/pokemon_catalogue.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'Provider/pokemon_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+      MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => PokemonProvider())
+          ],
+        child: const MyApp(),
+      )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -31,7 +41,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const PokemonCatalogue(),
     );
   }
 }
