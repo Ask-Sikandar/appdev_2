@@ -1,6 +1,4 @@
-import 'dart:convert';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../model/user_model.dart';
 import 'package:dio/dio.dart';

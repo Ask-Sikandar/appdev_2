@@ -2,7 +2,6 @@ import 'dart:core';
 
 import 'package:dio/dio.dart';
 import 'package:appdev_2/model/user_model.dart';
-import 'dart:convert';
 
 final dio = Dio();
 

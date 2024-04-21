@@ -1,7 +1,5 @@
-import 'package:appdev_2/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:appdev_2/provider/user_provider.dart';
 
 
