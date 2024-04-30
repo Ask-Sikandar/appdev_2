@@ -9,12 +9,13 @@ class Pokemon {
   final String candy;
   final int? candyCount;
   final String egg;
-  final double spawnChance;
-  final double avgSpawns;
-  final String spawnTime;
-  List<double>? multipliers;
-  List<String>? weaknesses;
-  final List<Evolution>? nextEvolution;
+  final double? spawnChance;
+  final double? avgSpawns;
+  final String? spawnTime;
+  final List<double>? multipliers;
+  final List<String> weaknesses;
+  final List<Map<String, dynamic>>? prevEvolution;
+  final List<Map<String, dynamic>>? nextEvolution;
 
   Pokemon({
     required this.id,
@@ -32,46 +33,35 @@ class Pokemon {
     required this.spawnTime,
     required this.multipliers,
     required this.weaknesses,
+    required this.prevEvolution,
     required this.nextEvolution,
   });
 
   factory Pokemon.fromJson(Map<String, dynamic> json) {
     return Pokemon(
-      id: json['id'] as int,
-      num: json['num'] as String,
-      name: json['name'] as String,
-      img: json['img'] as String,
-      type: (json['type'] as List).map((e) => e as String).toList(),
-      height: json['height'] as String,
-      weight: json['weight'] as String,
-      candy: json['candy'] as String,
-      candyCount: json['candy_count'],
-      egg: json['egg'] as String,
-      spawnChance: json['spawn_chance'].toDouble() as double,
+      id: json['id'],
+      num: json['num'],
+      name: json['name'],
+      img: json['img'],
+      type: List<String>.from(json['type']),
+      height: json['height'],
+      weight: json['weight'],
+      candy: json['candy'],
+      candyCount: json['candyCount'],
+      egg: json['egg'],
+      spawnChance: json['spawn_chance'].toDouble(),
       avgSpawns: json['avg_spawns'].toDouble(),
-      spawnTime: json['spawn_time'] as String,
-      multipliers: (json['multipliers'] as List?)?.map((e) => e as double).toList(),
-      weaknesses: (json['weaknesses'] as List?)?.map((e) => e as String).toList(),
-      nextEvolution: (json['next_evolution'] as List?)
-          ?.map((e) => Evolution.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
-  }
-}
-
-class Evolution {
-  final String num;
-  final String name;
-
-  Evolution({
-    required this.num,
-    required this.name,
-  });
-
-  factory Evolution.fromJson(Map<String, dynamic> json) {
-    return Evolution(
-      num: json['num'] as String,
-      name: json['name'] as String,
+      spawnTime: json['spawn_time'],
+      weaknesses: List<String>.from(json['weaknesses']),
+      multipliers: json['multipliers'] == null
+          ? null
+          : List<double>.from(json['multipliers']),
+      prevEvolution: json['prev_evolution'] == null
+          ? null
+          : List<Map<String, dynamic>>.from(json['prev_evolution']),
+      nextEvolution: json['next_evolution'] == null
+          ? null
+          : List<Map<String, dynamic>>.from(json['next_evolution']),
     );
   }
 }

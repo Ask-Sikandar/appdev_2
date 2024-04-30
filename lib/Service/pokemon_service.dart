@@ -24,10 +24,10 @@ class PokemonService{
     }
   }
 }
-// Future<void> main() async {
-//   var pok = PokemonService();
-//   List<Pokemon> poki = await pok.getAllPokemons();
-//   for(Pokemon p in poki){
-//     print(p.name);
-//   }
-// }
+Future<void> main() async {
+  var pok = PokemonService();
+  List<Pokemon> poki = await pok.getAllPokemons();
+  for(Pokemon p in poki){
+    print(p.name);
+  }
+}

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../Provider/pokemon_provider.dart';
 
 class PokemonCatalogue extends StatefulWidget {
@@ -19,24 +18,28 @@ class _PokemonCatalogueState extends State<PokemonCatalogue> {
           const SizedBox(height: 80,),
           const Text('Pokedex'),
           Consumer<PokemonProvider>(
-              builder: (context, value, child) {
-                if (value.isLoading){
-                  return const Center(child: CircularProgressIndicator(),);
-                } else {
-                  final pokemon = value.pokemons;
-                  return GridView.builder(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2),
-                      itemBuilder: (BuildContext context, int index){
-                        return Card(
-                          child: ListTile(
-                            leading: Text(pokemon[index].name),
-                          ),
-                        );
-                      });
-                }
+            builder: (context, value, child) {
+              if (value.isLoading){
+                return const Center(child: CircularProgressIndicator(),);
+              } else {
+                final pokemon = value.pokemons;
+                return GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1.43
+                  ),
+                  itemCount: value.pokemons.length,
+                  itemBuilder: (BuildContext context, int index){
+                    return Card(
+                      child: ListTile(
+                        leading: Text(pokemon[index].name),
+                      ),
+                    );
+                  },
+                );
               }
-            )
+            },
+          )
         ],
       ),
     );

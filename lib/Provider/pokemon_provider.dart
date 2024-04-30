@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 class PokemonProvider extends ChangeNotifier{
   final _service = PokemonService();
   bool isLoading = true;
+  @override
   notifyListeners();
   List<Pokemon> _pokemons = [];
   List<Pokemon> get pokemons => _pokemons;
